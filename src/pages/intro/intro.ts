@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
 
 import {TabsPage} from '../tabs/tabs';
 
@@ -19,29 +18,12 @@ import {TabsPage} from '../tabs/tabs';
 export class IntroPage {
 	public like:number = 0;
 	public contatos;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.contatos = [
   		{'nome' : 'Ana', 'telefone' : '98273734', 'email': 'ana@gmail.com'},
   		{'nome' : 'João', 'telefone' : '892732724', 'email': 'joao@hotmail.com'},
   		{'nome' : 'Pedro', 'telefone' : '8987283723', 'email': 'pedro@yahoo.com'},
   	]
-  }
-
- public showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Ops!',
-      subTitle: 'Like não pode ser negativo!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-  public contador(operation):void {
-  		if (operation == 0 && this.like > 0)
-  			this.like--;
-  		else if (operation == 1)
-  			this.like++;
-  		else 
-  		  this.showAlert();
   }
   
  public goToTabsPage(){

@@ -7,45 +7,53 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Meu Feed</ion-title>
+    <ion-title>Meu FeedPage</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-	<ion-card>
+<ion-content padding >
+    <form>
+      <input type="text" name="desc" [(ngModel)]="desc" placeholder="O que você está pensando?">
+      <input type="submit" (click)="mudaNome('hum')">
+  </form>
+ 
+	<ion-card *ngFor='let x of object_feed'>
 
   <ion-item>
     <ion-avatar item-start>
-      <img src="assets/imgs/avatar.png">
+      <img src="assets/imgs/{{x.avatar}}">
     </ion-avatar>
-    <h2 class="feed_title">{{ object_feed.title }}</h2>
-    <p class="feed_date">{{ object.feed.date }}</p>
+    <h2 class="feed_title">{{ x.title }}</h2> <!-- USER NAME -->
+    <p class="feed_date">{{ x.date }}</p> <!-- POST DATE -->
   </ion-item>
 
-  <img src="assets/imgs/feed_image.png">
+  <img src="assets/imgs/{{x.feed_image}}">
 
-  <ion-card-content>
-    <p>{{ object.feed.description }}</p>
+  <ion-card-content> <!-- DESCRIPTION -->
+    <p>{{ x.description }}</p>
   </ion-card-content>
 
   <ion-row>
-    <ion-col>
-      <button ion-button icon-left clear small>
+    <ion-col> <!-- LIKES -->
+      <button ion-button icon-left clear small (click)="contador(1, x.id)"> <!-- BUTTON LIKE -->
         <ion-icon name="thumbs-up"></ion-icon>
-        <div>{{ object.feed.qntd_likes }}</div>
+         <div>{{ x.qntd_likes }} Likes</div>
+      </button>
+      <button ion-button icon-left clear small (click)="contador(0, x.id)"> <!-- BUTTON DESLIKE -->
+        <ion-icon name="thumbs-down"></ion-icon>
       </button>
     </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small>
+    <ion-col> <!-- COMENTS -->
+      <button ion-button icon-left clear small> 
         <ion-icon name="text"></ion-icon>
-        <div>{{ object.feed.qntd_likes }}</div>
+        <div>{{ x.qntd_comments }} Comments</div>
       </button>
-    </ion-col>
+    </ion-col> <!-- TIME COMENT -->
     <ion-col center text-center>
       <ion-note>
-        {{ object.feed.time_comment }}
+        {{ x.time_comment }}
       </ion-note>
     </ion-col>
   </ion-row>
